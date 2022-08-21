@@ -1,11 +1,11 @@
 
 // initial variables
-let ballX = 225
-let ballY = 140
-let leftRacketX = 20
-let leftRacketY = 100
-let rightRacketX = 440
-let rightRacketY = 100
+let ballX = 225 *2
+let ballY = 140 *2
+let leftRacketX = 20 *2
+let leftRacketY = 100 *2
+let rightRacketX = 440 *2
+let rightRacketY = 100 *2
 let colour = "#ffffff"
 let won = false
 let team = "Left "
@@ -28,23 +28,24 @@ window.addEventListener("load", function () {
 
 function draw(ctx, colour) {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
 if (state == "playing") {
+
+
   ctx.beginPath();
   ctx.font = "50px Arial";
   ctx.fillStyle = timerColour;
-  ctx.fillText(startTimer, 220, 170);
+  ctx.fillText(startTimer, 240 *2, 170 *2);
   ctx.fill();
   ctx.closePath();
   
   ctx.beginPath();
-  ctx.rect(ballX, ballY, 20, 20);
+  ctx.rect(ballX, ballY, 20 *2, 20 *2);
   ctx.fillStyle = colour;
   ctx.fill();
   ctx.closePath();
 } if (state == "start") {
   ctx.beginPath();
-  ctx.rect(ballX, ballY, 20, 20);
+  ctx.rect(ballX, ballY, 20 *2, 20 *2);
   ctx.fillStyle = colour;
   ctx.fill();
   ctx.closePath();
@@ -52,19 +53,20 @@ if (state == "playing") {
   ctx.beginPath();
   ctx.font = "50px Arial";
   ctx.fillStyle = timerColour;
-  ctx.fillText(startTimer, 220, 170);
+  ctx.fillText(startTimer, 230 *2, 170 *2);
   ctx.fill();
   ctx.closePath();
+
 }
 
   ctx.beginPath();
-  ctx.rect(leftRacketX, leftRacketY, 20, 100);
+  ctx.rect(leftRacketX, leftRacketY, 20 *2, 100 *2);
   ctx.fillStyle = colour;
   ctx.fill();
   ctx.closePath();
 
   ctx.beginPath();
-  ctx.rect(rightRacketX, rightRacketY, 20, 100);
+  ctx.rect(rightRacketX, rightRacketY, 20 *2, 100 *2);
   ctx.fillStyle = colour;
   ctx.fill();
   ctx.closePath();
@@ -75,16 +77,16 @@ if (state == "playing") {
 
 function paddleMove() {
   if (rightUpPressed == true) {
-    rightRacketY-=10
+    rightRacketY-=10 *2
   }
   if (rightDownPressed == true) {
-    rightRacketY+=10
+    rightRacketY+=10 *2
   }
   if (leftUpPressed == true) {
-    leftRacketY-=10
+    leftRacketY-=10 *2
   }
   if (leftDownPressed == true) {
-    leftRacketY+=10
+    leftRacketY+=10 *2
   }
 }
 
@@ -101,7 +103,7 @@ function gameLoop() {
 
     startTimer--
 
-    if (startTimer <= 0) {
+    if (startTimer <= -1) {
       timerColour = "black"
       state = "playing"
 
@@ -114,29 +116,29 @@ function gameLoop() {
               if (eventDown.key == "ArrowUp" && rightRacketY > 0) {
                 rightUpPressed = true
                 paddleMove()
-              } if (eventDown.key == "ArrowDown" && rightRacketY < 220) {
+              } if (eventDown.key == "ArrowDown" && rightRacketY < 220 *2) {
                 rightDownPressed = true
                 paddleMove()
               } if (eventDown.key == "w" && leftRacketY > 0) {
                 leftUpPressed = true
                 paddleMove()
-              } if (eventDown.key == "s" && leftRacketY < 220) {
+              } if (eventDown.key == "s" && leftRacketY < 220 *2) {
                 leftDownPressed = true
                 paddleMove()
               }
             });
 
             window.addEventListener('keyup', (eventUp) => {
-              if (eventUp.key == "ArrowUp" && rightRacketY > 0) {
+              if (eventUp.key == "ArrowUp") {
                 rightUpPressed = false
                 paddleMove()
-              } if (eventUp.key == "ArrowDown" && rightRacketY < 220) {
+              } if (eventUp.key == "ArrowDown") {
                 rightDownPressed = false
                 paddleMove()
-              } if (eventUp.key == "w" && leftRacketY > 0) {
+              } if (eventUp.key == "w") {
                 leftUpPressed = false
                 paddleMove()
-              } if (eventUp.key == "s" && leftRacketY < 220) {
+              } if (eventUp.key == "s") {
                 leftDownPressed = false
                 paddleMove()
               }
@@ -151,12 +153,12 @@ function gameLoop() {
 
   if (state == "playing") {
     draw(ctx, "white")
-    
-    if (ballX >= rightRacketX - 20 && ballY <= (rightRacketY + 100) && ballY >= (rightRacketY + 5)) {
+    //Racket bounce code
+    if (ballX >= rightRacketX - 20 *2 && ballY <= (rightRacketY + 100 *2) && ballY >= (rightRacketY + 5 *2)) {
       rightRacketHit = true
       leftRacketHit = false
     }
-    if (ballX <= leftRacketX + 20 && ballY <= (leftRacketY + 100) && ballY >= leftRacketY) {
+    if (ballX <= leftRacketX + 20 *2 && ballY <= (leftRacketY + 100 *2) && ballY >= leftRacketY) {
       leftRacketHit = true
       rightRacketHit = false
     }
@@ -183,17 +185,18 @@ function gameLoop() {
       }
       rightRacketHit = false
     }
+    //
     if (ballX <= 0) {
       colour = "#000000"
       team = "Right"
       state = "finish"
     }
-    if (ballX >= 480) {
+    if (ballX >= 480 *2) {
       colour = "#000000"
       team = "Left"
       state = "finish"
     }
-    if (ballY >= 300) {
+    if (ballY >= 300 *2) {
       ballDirectionY = 0
     }
     if (ballY <= 0) {
@@ -219,11 +222,23 @@ function gameLoop() {
 
   if (state == "finish") {
     ctx.beginPath();
-    ctx.font = "50px Arial";
+    ctx.font = "70px Arial";
     ctx.fillStyle = "#ffffff";
-    ctx.fillText(team + " Won!", 145, 170);
+    ctx.fillText(team + " Won!", 170 *2, 170 *2);
     ctx.fill();
     ctx.closePath();
+
+    ctx.beginPath();
+    ctx.font = "45px Arial";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Play again", 190 *2, 200 *2);
+    ctx.fill();
+    ctx.closePath();
+    window.addEventListener('mousemove', function (e) {
+      if (e.clientX >= 380 && e.clientX <= 677 && e.clientY >= 400 && e.clientY <= 407 && state == "finish") {
+        state = "start"
+      }
+  });
   }
 
   // schedule the event loop to go again
