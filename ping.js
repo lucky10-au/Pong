@@ -11,10 +11,6 @@ let leftColour = "#ffffff"
 let won = false
 let team = "Left "
 let speed = 50
-let ballDirectionX = 1
-let ballDirectionY = 0
-let rightRacketHit = false
-let leftRacketHit = false
 let startTimer = 3
 let timerColour = "#3532ed"
 let rightUpPressed = false
@@ -22,8 +18,9 @@ let rightDownPressed = false
 let leftUpPressed = false
 let leftDownPressed = false
 let ballSpeed = 1
-let once = 0
 let winColour = "blue"
+let ballState = "moving"
+let direction = "down, right"
 let state = "start" // start, playing and finish
 
 window.addEventListener("load", function () {
@@ -117,14 +114,11 @@ function paddleMove() {
     leftRacketY = 600
   }
 }
-function speedUp() {
- ballSpeed+=0.5
- setTimeout(speedUp, 750)
+function speedUpBall() {
+  ballSpeed+=0.1
+  setTimeout(speedUpBall, 1000)
 }
-if (state == "playing" && once == 0) {
-  speedUp()
-  once = 1
-}
+speedUpBall()
 function gameLoop() {
   let canvas = document.getElementById("myCanvas");
   let ctx = canvas.getContext("2d");
@@ -194,76 +188,136 @@ function gameLoop() {
 
 
   if (state == "playing") {
+
     draw(ctx, "#f52c2c", "#3532ed", ballcolour)
 
-    //Racket bounce code
-    if (ballX >= rightRacketX - 20 *2.5 && ballY <= (rightRacketY + 100 *2) && ballY >= (rightRacketY + 5 *2)) {
-      ballcolour = "#3532ed"
-      rightRacketHit = true
-      leftRacketHit = false
+    //Ball bounce code
+    if (ballState == "moving") {
+       
 
-    }
-    if (ballX <= leftRacketX + 20 *2.5 && ballY <= (leftRacketY + 100 *2) && ballY >= leftRacketY) {
-      ballcolour = "#f52c2c"
-      leftRacketHit = true
-      rightRacketHit = false
+        if (ballX == (rightRacketX-=25) && ballY >= rightRacketY && ballY <= (rightRacketY+=25)){
+            direction="very up, left"
+        }
+        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=25) && ballY <= (rightRacketY+=75)){
+            direction = "up, left"
+        }
+        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=75) && ballY <= (rightRacketY+=100)){
+            direction = "slight up, left"
+        }
 
-    }
-
-    if (leftRacketHit == true) {
-      ballDirectionX = 1
-      let random = Math.round(Math.random())
-      if (random == 0) {
-        ballDirectionY = 0
+        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=100) && ballY <= (rightRacketY+=125)){
+          direction="slight down, left"
+        }
+        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=125) && ballY <= (rightRacketY+=175)){
+          direction = "down, left"
+       }
+       if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=175) && ballY <= (rightRacketY+=200)){
+          direction = "very down, left"
+       }
+      
+      if (ballY <= 0 && direction == "slightly down, left") {
+        direction = "slightly up, left"
       }
-      if (random == 1) {
-        ballDirectionY = 1
+      if (ballY <= 0 && direction == "slightly down, right") {
+        direction = "slightly up, right"
       }
-      leftRacketHit = false
-    }
-    if (rightRacketHit == true) {
-      ballDirectionX = 0
-      let random = Math.round(Math.random())
-      if (random == 0) {
-        ballDirectionY = 0
+      if (ballY <= 0 && direction == "down, left") {
+        direction = "up, left"
       }
-      if (random == 1) {
-        ballDirectionY = 1
+      if (ballY <= 0 && direction == "down, right") {
+        direction = "up, right"
       }
-      rightRacketHit = false
-    }
-    //
-    if (ballX <= 0) {
-      team = "Blue"
-      winColour = "#3532ed"
-      state = "finish"
-    }
-    if (ballX >= 480 *2.5) {
-      team = "Red"
-      winColour = "#f52c2c"
-      state = "finish"
-    }
-    if (ballY >= 300 *2.5) {
-      ballDirectionY = 0
-    }
-    if (ballY <= 0) {
-      ballDirectionY = 1
-    }
-    if (ballDirectionX == 1) {
-      ballX+=ballSpeed;
-    }
-    if (ballDirectionX == 0) {
-      ballX-=ballSpeed
-    }
-    if (ballDirectionY == 1) {
-      ballY+=ballSpeed
-    }
-    if (ballDirectionY == 0) {
-      ballY-=ballSpeed
-    }
+      if (ballY <= 0 && direction == "very down, left") {
+        direction = "very up, left"
+      }
+      if (ballY <= 0 && direction == "very down, right") {
+        direction = "very up, right"
+      }
+
+      if (ballY >= 750 && direction == "slightly down, left") {
+        direction = "slightly up, left"
+      }
+      if (ballY >= 750 && direction == "slightly down, right") {
+        direction = "slightly up, right"
+      }
+      if (ballY >= 750 && direction == "down, left") {
+        direction = "up, left"
+      }
+      if (ballY >= 750 && direction == "down, right") {
+        direction = "up, right"
+        console.log("hi")
+      }
+      if (ballY >= 750 && direction == "very down, left") {
+        direction = "very up, left"
+      }
+      if (ballY >= 750 && direction == "very down, right") {
+        direction = "very up, right"
+      }
 
 
+      if (direction == "very down, right") {
+        ballX+=ballSpeed
+        ballY+=ballSpeed*1.7
+      }
+      if (direction == "very up, right") {
+        ballX+=ballSpeed
+        ballY-=ballSpeed*2.7
+      }
+      if (direction == "very down, left") {
+        ballX-=ballSpeed
+        ballY+=ballSpeed*1.7
+      }
+      if (direction == "very up, left") {
+        ballX-=ballSpeed
+        ballY-=ballSpeed*2.7
+      }
 
+
+      if (direction == "down, right") {
+        ballX+=ballSpeed
+        ballY+=ballSpeed
+      }
+      if (direction == "up, right") {
+        ballX+=ballSpeed
+        ballY-=ballSpeed
+      }
+      if (direction == "down, left") {
+        ballX-=ballSpeed
+        ballY+=ballSpeed
+      }
+      if (direction == "up, left") {
+        ballX-=ballSpeed
+        ballY-=ballSpeed
+      }
+
+
+      if (direction == "slight down, right") {
+        ballX+=ballSpeed
+        ballY+=ballSpeed*0.7
+      }
+      if (direction == "slight up, right") {
+        ballX+=ballSpeed
+        ballY-=ballSpeed*1.7
+      }
+      if (direction == "slight down, left") {
+        ballX-=ballSpeed
+        ballY+=ballSpeed*0.7
+      }
+      if (direction == "slight up, left") {
+        ballX-=ballSpeed
+        ballY-=ballSpeed*1.7
+      }
+      if (ballX >= 1150) {
+        state = "finish"
+        team = "Blue"
+        winColour = "#3532ed"
+      }
+      if (ballX <= 0) {
+        state = "finish"
+        team = "Red"
+        winColour = "#f52c2c"
+      }
+    }
   }
 
 
