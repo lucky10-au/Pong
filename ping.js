@@ -20,7 +20,7 @@ let leftDownPressed = false
 let ballSpeed = 1
 let winColour = "blue"
 let ballState = "moving"
-let direction = "down, right"
+let direction = "down,right"
 let state = "start" // start, playing and finish
 
 window.addEventListener("load", function () {
@@ -113,7 +113,7 @@ function paddleMove() {
   }
 }
 function speedUpBall() {
-  ballSpeed+=0.1
+  ballSpeed+=0.001
   setTimeout(speedUpBall, 1000)
 }
 speedUpBall()
@@ -192,125 +192,192 @@ function gameLoop() {
     //Ball bounce code
     if (ballState == "moving") {
        
-
-        if (ballX == (rightRacketX-=25) && ballY >= rightRacketY && ballY <= (rightRacketY+=25)){
-            direction="very up, left"
+      //Code to bounce ball off of racket
+        if (ballX >= (rightRacketX-25) && ballY >= rightRacketY && ballY <= (rightRacketY+25)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "veryup,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction = "verydown,left"
+          }
+        } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+25) && ballY <= (rightRacketY+75)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "up,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction = "down,left"
+          }
+        } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+75) && ballY <= (rightRacketY+100)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "slightlyup,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction = "slightlydown,left"
+          }
+        } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+100) && ballY <= (rightRacketY+125)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "slightlyup,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction == "slightlyup,left"
+          }
+        } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+125) && ballY <= (rightRacketY+175)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "up,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction = "down,left"
+          }
+        } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+175) && ballY <= (rightRacketY+200)){
+          if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
+            direction = "veryup,left"
+          }
+          if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
+            direction = "verydown,left"
+          }
         }
-        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=25) && ballY <= (rightRacketY+=75)){
-            direction = "up, left"
+       //
+        if (ballX <= (leftRacketX+25) && ballY >= leftRacketY && ballY <= (leftRacketY+25)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "veryup,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "verydown,right"
+          }
+        } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+25) && ballY <= (leftRacketY+75)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "up,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "down,right"
+          }
+        } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+75) && ballY <= (leftRacketY+100)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "slightlyup,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "slightlydown,right"
+          }
+        } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+100) && ballY <= (leftRacketY+125)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "slightlyup,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "slightlydown,right"
+          }
+        } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+125) && ballY <= (leftRacketY+175)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "up,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "down,right"
+          }
+        } else if (ballX <= (leftRacketX+25)&& ballY >= (leftRacketY+175) && ballY <= (leftRacketY+200)){
+          if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
+            direction = "veryup,right"
+          }
+          if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
+            direction = "verydown,right"
+          }
         }
-        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=75) && ballY <= (rightRacketY+=100)){
-            direction = "slight up, left"
-        }
-
-        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=100) && ballY <= (rightRacketY+=125)){
-          direction="slight down, left"
-        }
-        if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=125) && ballY <= (rightRacketY+=175)){
-          direction = "down, left"
-       }
-       if (ballX == (rightRacketX-=25) && ballY >= (rightRacketY+=175) && ballY <= (rightRacketY+=200)){
-          direction = "very down, left"
-       }
-      
-      if (ballY <= 0 && direction == "slightly down, left") {
-        direction = "slightly up, left"
+      //
+      if (ballY <= 0 && direction == "slightlyup,left") {
+        direction = "slightlydown,left"
       }
-      if (ballY <= 0 && direction == "slightly down, right") {
-        direction = "slightly up, right"
+      if (ballY <= 0 && direction == "slightlyup,right") {
+        direction = "slightlydown,right"
       }
-      if (ballY <= 0 && direction == "down, left") {
-        direction = "up, left"
+      if (ballY <= 0 && direction == "up,left") {
+        direction = "down,left"
       }
-      if (ballY <= 0 && direction == "down, right") {
-        direction = "up, right"
+      if (ballY <= 0 && direction == "up,right") {
+        direction = "down,right"
       }
-      if (ballY <= 0 && direction == "very down, left") {
-        direction = "very up, left"
+      if (ballY <= 0 && direction == "veryup,left") {
+        direction = "verydown,left"
       }
-      if (ballY <= 0 && direction == "very down, right") {
-        direction = "very up, right"
+      if (ballY <= 0 && direction == "veryup,right") {
+        direction = "verydown,right"
       }
 
-      if (ballY >= 750 && direction == "slightly down, left") {
-        direction = "slightly up, left"
+      if (ballY >= 750 && direction == "slightlydown,left") {
+        direction = "slightlyup,left"
       }
-      if (ballY >= 750 && direction == "slightly down, right") {
-        direction = "slightly up, right"
+      if (ballY >= 750 && direction == "slightlydown,right") {
+        direction = "slightlyup,right"
       }
-      if (ballY >= 750 && direction == "down, left") {
-        direction = "up, left"
+      if (ballY >= 750 && direction == "down,left") {
+        direction = "up,left"
       }
-      if (ballY >= 750 && direction == "down, right") {
-        direction = "up, right"
-        console.log("hi")
+      if (ballY >= 750 && direction == "down,right") {
+        direction = "up,right"
       }
-      if (ballY >= 750 && direction == "very down, left") {
-        direction = "very up, left"
+      if (ballY >= 750 && direction == "verydown,left") {
+        direction = "veryup,left"
       }
-      if (ballY >= 750 && direction == "very down, right") {
-        direction = "very up, right"
+      if (ballY >= 750 && direction == "verydown,right") {
+        direction = "veryup,right"
       }
 
 
-      if (direction == "very down, right") {
+      if (direction == "verydown,right") {
         ballX+=ballSpeed
-        ballY+=ballSpeed*1.7
+        ballY+=ballSpeed+0.2
       }
-      if (direction == "very up, right") {
+      if (direction == "veryup,right") {
         ballX+=ballSpeed
-        ballY-=ballSpeed*2.7
+        ballY-=ballSpeed+0.2
       }
-      if (direction == "very down, left") {
+      if (direction == "verydown,left") {
         ballX-=ballSpeed
-        ballY+=ballSpeed*1.7
+        ballY+=ballSpeed+0.2
       }
-      if (direction == "very up, left") {
+      if (direction == "veryup,left") {
         ballX-=ballSpeed
-        ballY-=ballSpeed*2.7
+        ballY-=ballSpeed+0.2
       }
 
 
-      if (direction == "down, right") {
+      if (direction == "down,right") {
         ballX+=ballSpeed
         ballY+=ballSpeed
       }
-      if (direction == "up, right") {
+      if (direction == "up,right") {
         ballX+=ballSpeed
         ballY-=ballSpeed
       }
-      if (direction == "down, left") {
+      if (direction == "down,left") {
         ballX-=ballSpeed
         ballY+=ballSpeed
       }
-      if (direction == "up, left") {
+      if (direction == "up,left") {
         ballX-=ballSpeed
         ballY-=ballSpeed
       }
 
 
-      if (direction == "slight down, right") {
+      if (direction == "slightlydown,right") {
         ballX+=ballSpeed
         ballY+=ballSpeed*0.7
       }
-      if (direction == "slight up, right") {
+      if (direction == "slightlyup,right") {
         ballX+=ballSpeed
         ballY-=ballSpeed*1.7
       }
-      if (direction == "slight down, left") {
+      if (direction == "slightlydown,left") {
         ballX-=ballSpeed
         ballY+=ballSpeed*0.7
       }
-      if (direction == "slight up, left") {
+      if (direction == "slightlyup,left") {
         ballX-=ballSpeed
         ballY-=ballSpeed*1.7
       }
-      if (ballX >= 1150) {
+      if (ballX <= 0) {
         state = "finish"
         team = "Blue"
         winColour = "#3532ed"
       }
-      if (ballX <= 0) {
+      if (ballX >= 1150) {
         state = "finish"
         team = "Red"
         winColour = "#f52c2c"
