@@ -54,8 +54,6 @@ if (state == "playing") {
   ctx.fillStyle = ballColour;
   ctx.fill();
   ctx.closePath();
-
-
 } if (state == "start") {
   ctx.beginPath();
   ctx.rect(ballX, ballY, 20 *2.5, 20 *2.5);
