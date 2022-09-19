@@ -21,8 +21,6 @@ let ballSpeed = 1
 let winColour = "blue"
 let ballState = "moving"
 let direction = "down,right"
-let leftCheat = 0
-let rightCheat = 0
 let onCount = 0
 let state = "start" // start, playing and finish
 
