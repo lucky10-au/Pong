@@ -21,7 +21,7 @@ let ballSpeed = 1
 let winColour = "blue"
 let ballState = "moving"
 let direction = "down,right"
-let onCount = 0
+let onCount = 25
 let state = "start" // start, playing and finish
 
 window.addEventListener("load", function () {
@@ -180,19 +180,19 @@ function gameLoop() {
             window.addEventListener('keyup', (eventUp) => {
               if (eventUp.key == "ArrowUp") {
                 rightUpPressed = false
-                onCount = 0
+                onCount = 25
                 paddleMove()
               } if (eventUp.key == "ArrowDown") {
                 rightDownPressed = false
-                onCount = 0
+                onCount = 25
                 paddleMove()
               } if (eventUp.key == "w") {
                 leftUpPressed = false
-                onCount = 0
+                onCount = 25
                 paddleMove()
               } if (eventUp.key == "s") {
                 leftDownPressed = false
-                onCount = 0
+                onCount = 25
                 paddleMove()
               }
             });
@@ -215,55 +215,67 @@ function gameLoop() {
         if (ballX >= (rightRacketX-25) && ballY >= rightRacketY && ballY <= (rightRacketY+25)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "veryup,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction = "verydown,left"
+            ballcolour = "#3532ed"
             beep();
           }
         } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+25) && ballY <= (rightRacketY+75)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "up,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction = "down,left"
+            ballcolour = "#3532ed"
             beep();
           }
         } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+75) && ballY <= (rightRacketY+100)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "slightlyup,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction = "slightlydown,left"
+            ballcolour = "#3532ed"
             beep();
           }
         } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+100) && ballY <= (rightRacketY+125)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "slightlyup,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction == "slightlyup,left"
+            ballcolour = "#3532ed"
             beep();
           }
         } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+125) && ballY <= (rightRacketY+175)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "up,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction = "down,left"
+            ballcolour = "#3532ed"
             beep();
           }
         } else if (ballX >= (rightRacketX-25) && ballY >= (rightRacketY+175) && ballY <= (rightRacketY+200)){
           if (direction == "slightlyup,right" || direction == "up,right" || direction == "veryup,right") {
             direction = "veryup,left"
+            ballcolour = "#3532ed"
             beep();
           }
           if (direction == "slightlydown,right" || direction == "down,right" || direction == "verydown,right") {
             direction = "verydown,left"
+            ballcolour = "#3532ed"
             beep();
           }
         }
@@ -271,55 +283,67 @@ function gameLoop() {
         if (ballX <= (leftRacketX+25) && ballY >= leftRacketY && ballY <= (leftRacketY+25)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "veryup,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "verydown,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+25) && ballY <= (leftRacketY+75)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "up,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "down,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+75) && ballY <= (leftRacketY+100)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "slightlyup,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "slightlydown,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+100) && ballY <= (leftRacketY+125)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "slightlyup,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "slightlydown,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         } else if (ballX <= (leftRacketX+25) && ballY >= (leftRacketY+125) && ballY <= (leftRacketY+175)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "up,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "down,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         } else if (ballX <= (leftRacketX+25)&& ballY >= (leftRacketY+175) && ballY <= (leftRacketY+200)){
           if (direction == "slightlyup,left" || direction == "up,left" || direction == "veryup,left") {
             direction = "veryup,right"
+            ballcolour = "#f52c2c"
             beep();
           }
           if (direction == "slightlydown,left" || direction == "down,left" || direction == "verydown,left") {
             direction = "verydown,right"
+            ballcolour = "#f52c2c"
             beep();
           }
         }
@@ -366,19 +390,19 @@ function gameLoop() {
 
       if (direction == "verydown,right") {
         ballX+=ballSpeed
-        ballY+=ballSpeed
+        ballY+=ballSpeed+1
       }
       if (direction == "veryup,right") {
         ballX+=ballSpeed
-        ballY-=ballSpeed
+        ballY-=ballSpeed+1
       }
       if (direction == "verydown,left") {
         ballX-=ballSpeed
-        ballY+=ballSpeed
+        ballY+=ballSpeed+1
       }
       if (direction == "veryup,left") {
         ballX-=ballSpeed
-        ballY-=ballSpeed
+        ballY-=ballSpeed+1
       }
 
 
@@ -402,19 +426,19 @@ function gameLoop() {
 
       if (direction == "slightlydown,right") {
         ballX+=ballSpeed
-        ballY+=ballSpeed
+        ballY+=ballSpeed-0.4
       }
       if (direction == "slightlyup,right") {
         ballX+=ballSpeed
-        ballY-=ballSpeed
+        ballY-=ballSpeed-0.4
       }
       if (direction == "slightlydown,left") {
         ballX-=ballSpeed
-        ballY+=ballSpeed
+        ballY+=ballSpeed-0.4
       }
       if (direction == "slightlyup,left") {
         ballX-=ballSpeed
-        ballY-=ballSpeed
+        ballY-=ballSpeed-0.4
       }
       if (ballX <= 0) {
         state = "finish"
