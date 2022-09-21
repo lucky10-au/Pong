@@ -474,7 +474,6 @@ function gameLoop() {
     window.addEventListener('keyup', (eventUp) => {
       if (eventUp.key == "r") {
         location.reload()
-        console.log("reloaded")
       }
     })
   }
